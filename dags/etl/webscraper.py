@@ -3,9 +3,11 @@ import requests
 import datetime as dt
 import pandas as pd
 from bs4 import BeautifulSoup
+#from airflow.decorators import task, dag
 
 
-def get_stock_summary() -> pd.DataFrame:
+#@task()
+def get_stock_summary():
     page: int = 1
 
     result_list: list = list()
@@ -24,14 +26,17 @@ def get_stock_summary() -> pd.DataFrame:
         if not response.json()["results"]:
             break
 
-    return pd.DataFrame(result_list)
+    return result_list
 
 
-def scrape_stock_details(stock_ticker_symbols: list[str]) -> list[dict[list[int], list[int], dict[str: int], int]]:
+#@task()
+def scrape_stock_details(stock_summary):
+
+    df_summary = pd.DataFrame(stock_summary)
 
     result_list: list = list()
 
-    for stock_ticker_symbol in stock_ticker_symbols:
+    for stock_ticker_symbol in df_summary["ticker"].to_list():
 
         print(stock_ticker_symbol)
 
