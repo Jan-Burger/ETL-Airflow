@@ -1,13 +1,11 @@
-import re
-import requests
-import datetime as dt
-import pandas as pd
-from bs4 import BeautifulSoup
-#from airflow.decorators import task, dag
+from airflow.decorators import task, dag
 
 
-#@task()
+@task()
 def get_stock_summary():
+
+    import requests
+
     page: int = 1
 
     result_list: list = list()
@@ -29,8 +27,14 @@ def get_stock_summary():
     return result_list
 
 
-#@task()
+@task()
 def scrape_stock_details(stock_summary):
+
+    import re
+    import requests
+    import datetime as dt
+    import pandas as pd
+    from bs4 import BeautifulSoup
 
     df_summary = pd.DataFrame(stock_summary)
 
