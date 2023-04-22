@@ -8,7 +8,8 @@ from etl.db_loader import load_stock_data_into_staging
 
 staging_area = Dataset('postgresql+psycopg2://localhost:5431/stocks_sentiment_staging')
 
-@dag(schedule=None, start_date=dt.datetime(2023, 4, 21), catchup=False, tags=["stockdata", "apewisdom"])
+
+@dag(schedule=None, start_date=dt.datetime(2023, 4, 22), catchup=False, tags=["stockdata", "apewisdom"])
 def load_stock_data_into_staging_area():
 
     df_stock_summary = get_stock_summary()

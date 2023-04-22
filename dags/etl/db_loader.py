@@ -1,5 +1,8 @@
 from airflow.decorators import task
-from dags.load_stockdata_into_staging import staging_area
+from airflow import Dataset
+#from dags.load_stockdata_into_staging import staging_area
+
+staging_area = Dataset('postgresql+psycopg2://localhost:5431/stocks_sentiment_staging')
 
 
 @task(outlets=[staging_area])
