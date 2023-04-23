@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS public.stocks_sentiment_agg_by_day
     rank_24h_ago integer,
     mentions_24h_ago integer NOT NULL,
     sentiment_score integer,
-    keywords json[],
+    keywords json,
     PRIMARY KEY (id)
 );
 
