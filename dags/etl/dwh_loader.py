@@ -1,6 +1,9 @@
 from airflow.decorators import task
+from airflow import Dataset
 
-@task()
+dwh = Dataset('postgresql+psycopg2://localhost:5431/stocks_sentiment_dwh')
+
+@task(outlets=[dwh])
 def extract_data_from_staging_area():
 
     import pandas as pd
